@@ -9,6 +9,7 @@ COPY . .
 # package.json に build コマンドがあれば実行、なければスキップ
 RUN if npm run | grep -q " build$"; then npm run build; fi
 RUN npm prune --production
+RUN mkdir -p /app/node_modules
 
 # Stage 2: Production Runner
 FROM node:22-alpine AS runner
